@@ -10,16 +10,22 @@
   </body>
 </html>
 <script>
+  //these first three vars are your runners that tell everything to update every second.
   var timerVariable = setInterval(countDownTimer, 1000);
 var launchVar = setInterval(launchCounter, 1000);
 var midnightVar = setInterval(midnightCounter, 1000);
+  //this is my rate of one vet every 8.2 minutes, adjust as needed
+  //everything flows off of this variable so no need to change anywhere else
  var rate = 8.2;
   var totalSeconds = Math.floor(rate * 60);
   var rateMs = rate * 60 * 10000;
+  //this var is the launch date as expressed as milliseconds from jan 1st 1970 till then.
+  //to get this number for actaul launch and not my lorem ipsum 
+  //just run Date.now() on the given day at midnight, or we can ask for the specifica day and ge that value
   var launchDate = 1576914911594;
 
   function launchCounter(){
-    var numVets = Math.floor((Date.now() - launchDate) / 10000 / 60 / rate)
+    var numVets = Math.floor((Date.now() - launchDate) / 1000 / 60 / rate)
     document.getElementById("launch_date_count").innerHTML = "Number of Vets since site launched: " + numVets;
   }
   
@@ -31,7 +37,7 @@ var midnightVar = setInterval(midnightCounter, 1000);
         now.getDate(),
         0,0,0),
     diff = now.getTime() - then.getTime();
-  var numMid = Math.floor(diff / 10000 / 60 / rate)
+  var numMid = Math.floor(diff / 1000 / 60 / rate)
   document.getElementById("midnight_count").innerHTML = "Number of Vets today: " + numMid;
   }
 
