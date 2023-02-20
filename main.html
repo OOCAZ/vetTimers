@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vet Timers</title>
+  </head>
+  <body>
+    <div id="count_down_timer">Time till another Vet commits suicide: 8:20</div>
+    <div id="launch_date_count">Number of Vets since site launched: 0</div>
+    <div id="midnight_count">Number of Vets today: 0</div>
+  </body>
+</html>
+<script>
+  var timerVariable = setInterval(countDownTimer, 1000);
+var launchVar = setInterval(launchCounter, 1000);
+var midnightVar = setInterval(midnightCounter, 1000);
+ var rate = 8.2;
+  var totalSeconds = Math.floor(rate * 60);
+  var rateMs = rate * 60 * 10000;
+  var launchDate = 1576914911594;
+
+  function launchCounter(){
+    var numVets = Math.floor((Date.now() - launchDate) / 10000 / 60 / rate)
+    document.getElementById("launch_date_count").innerHTML = "Number of Vets since site launched: " + numVets;
+  }
+  
+  function midnightCounter(){
+  var now = new Date(),
+    then = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        0,0,0),
+    diff = now.getTime() - then.getTime();
+  var numMid = Math.floor(diff / 10000 / 60 / rate)
+  document.getElementById("midnight_count").innerHTML = "Number of Vets today: " + numMid;
+  }
+
+    function countDownTimer() {
+      --totalSeconds;
+      var hour = Math.floor(totalSeconds / 3600);
+      var minute = Math.floor((totalSeconds - hour * 3600) / 60);
+      var seconds = totalSeconds - (hour * 3600 + minute * 60);
+      document.getElementById("count_down_timer").innerHTML = "Time till another Vet commits suicide: "+ minute + ":" + seconds;
+      }</script>
